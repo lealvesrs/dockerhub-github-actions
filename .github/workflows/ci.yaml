@@ -1,0 +1,28 @@
+name: Publicando minha imagem automaticamente
+
+on:
+  push:
+    branches: [main]
+    
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: Docker Login
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{ secrets.SEC_USER_DOCKERHUB }}  
+          password: ${{ secrets.SEC_PASSWD_DOCKERHUB }}
+          
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: .
+          push: true
+          tags: |
+            leticialves2/app-modelo:v2.2
+            leticialves2/app-modelo:latest
+            
