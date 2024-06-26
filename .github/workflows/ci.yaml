@@ -1,4 +1,4 @@
-name: Publicando minha imagem automaticamente
+name: Publicando minha imagem automaticamente no dockerhub
 
 on:
   push:
